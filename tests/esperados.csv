@@ -1,0 +1,6 @@
+id,archivo,area,perimetro
+UNO,caso_uno.txt,12,14
+TOCAN,caso_consecutivos.txt,15,16
+SUPERPUESTOS,caso_superpuestos.txt,26,22
+SEPARADOS,caso_separados.txt,10,18
+OFICIAL,caso_oficial.txt,95,74

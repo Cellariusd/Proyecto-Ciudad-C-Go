@@ -1,0 +1,38 @@
+name: Compilacion base (C y Go)
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  compilar-c:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalar compilador
+        run: gcc --version
+      - name: Compilar C
+        run: make -C c
+      - name: Prueba inicial de modelos C
+        run: make -C c test
+      - name: Probar salida informativa de los TODO
+        run: printf '5\n0\n' | ./c/build/ciudad
+  compilar-go:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go/go.mod
+      - name: Formato Go
+        working-directory: go
+        run: |
+          test -z "$(gofmt -l .)" || (gofmt -l . && exit 1)
+      - name: Compilar Go
+        working-directory: go
+        run: go build -o /tmp/ciudad-go .
+      - name: Prueba inicial de modelos Go
+        working-directory: go
+        run: go test ./...

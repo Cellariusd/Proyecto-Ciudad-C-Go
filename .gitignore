@@ -1,0 +1,18 @@
+# Archivos generados
+c/build/
+go/build/
+*.exe
+*.o
+*.obj
+*.out
+*.test
+*.tmp
+*.swp
+.DS_Store
+.vscode/
+.idea/
+# Ciudades y gráficos locales (no datos de prueba)
+ciudad.txt
+edificios.svg
+horizonte.svg
+# Mantener fixtures bajo tests/
